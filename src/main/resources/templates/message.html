@@ -7,7 +7,7 @@
     <link href="/img/horn.png" rel="icon" sizes="32x32" type="image/png">
     <link data-th-href="@{/css/style.css}" rel="stylesheet">
 
-    <script data-th-src="@{/js/jquery@371.js}"></script>
+    <!-- <script data-th-src="@{/js/jquery@371.js}"></script> -->
 
 </head>
 <body>
@@ -23,9 +23,53 @@
 
 <h3 align="center">Bote Web Client</h3>
 <br>
-<div class="leer30"></div>
+<div class="leer30">&#160;</div>
 
 <!-- Socket connect, nur zum Testen -->
+
+<div align="center">
+    <table width="80%" border="0" cellspacing="0" cellpadding="0">
+
+        <thead>
+        <th>
+            <h3>Message an Bote Server Senden</h3>
+        </th>
+        </thead>
+
+        <tbody>
+        <tr><td>&#160;</td></tr>
+        <form style="border: 1px solid red;" method="post">
+            <tr>
+                <td>
+                    <input type="text" name="messageInput" placeholder="Bob"
+                           style="width: 95%; padding: 10px; font-size: 1.1em;" autofocus required>
+                </td>
+                <td width="100">
+                    <input type="submit" style="padding: 10px 20px;">
+                </td>
+            </tr>
+        </form>
+        <tr><td>&#160;</td></tr>
+    <!--    <form id="form" data-th-object="${object}">
+        <tr>
+            <td>
+                <input id="textInput" type="text" style="width: 98%; padding: 10px; font-size: 1.0em;" autofocus required>
+            </td>
+            <td width="100px" align="center">
+                <button id="sendButton" style="padding: 10px 20px;" type="button">Send</button>
+            </td>
+        </tr>
+        </form> -->
+        </tbody>
+
+        <tfoot id="textAusgabe" >
+            <tr><td data-th-text="${textAusgabe}" style="font-size: 1.1em;"></td></tr>
+            <tr><td><input type="submit" data-th-href="@{save}"  onclick="save()"/> </td></tr>
+            <!--<tr><td>Ausgabe</td></tr>-->
+        </tfoot>
+
+    </table>
+</div>
 
 
 

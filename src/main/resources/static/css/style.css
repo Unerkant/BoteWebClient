@@ -7,5 +7,6 @@
 html, body 	    { width: 100%; height: 100%; }
 @charset "UTF-8";
 
-
+.leer30         { height: 2.0em;}   /* 32px */
+.leer50         { height: 3.0em;}   /* 48px */
 
