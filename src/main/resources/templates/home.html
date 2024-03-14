@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/img/horn.png" rel="icon" sizes="32x32" type="image/png">
+    <link data-th-href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="homeContainer">
+
+    <!-- Header -->
+    <header class="homeHeader">
+        <table class="homeTable">
+            <tr>
+                <td class="homeTdLinks">
+                    &#160;&#160;
+                    <a data-th-href="@{/home}">
+                        <img src="/img/horn.png" width="36" height="36">
+                    </a>
+                </td>
+                <td class="homeTdMitte">
+                    <h3 data-th-text="${@environment.getProperty('info.name')}"></h3>
+                </td>
+                <td class="homeTdRechts">
+                    <span data-th-text="${datum}"></span>
+                    &#160;&#160;
+                </td>
+            </tr>
+        </table>
+    </header>
+
+    <!-- Freie Zone, hier wird aller susgegeben -->
+
+    <article class="homeArticle">
+
+        <div class="leer50">&#160;</div>
+        <div align="center">
+            <table width="80%" border="0" cellspacing="0" cellpadding="0">
+
+                <thead>
+                <th>
+                    <h3>Message an Bote Server Senden</h3>
+                </th>
+                </thead>
+
+                <tbody>
+                <tr><td>&#160;</td></tr>
+                <form style="border: 1px solid red;" method="post">
+                    <tr>
+                        <td>
+                            <input type="text" name="messageInput" placeholder="Bob"
+                                   style="width: 95%; padding: 10px; font-size: 1.1em;" autofocus required>
+                        </td>
+                        <td width="100">
+                            <input type="submit" style="padding: 10px 20px;">
+                        </td>
+                    </tr>
+                </form>
+                <tr><td>&#160;</td></tr>
+                </tbody>
+
+                <tfoot id="textAusgabe" >
+                <tr><td data-th-text="${textAusgabe}" style="font-size: 1.1em;"></td></tr>
+                </tfoot>
+
+            </table>
+        </div>
+
+    </article>
+
+    <!--  <aside class="homeAside">
+          <span>seiten ausgabe</span>
+      </aside>-->
+
+    <!-- Ende frei Zone -->
+
+    <div class="homeFooterPlatzhalter">&#160;</div><!-- Platzhalter für den Footer -->
+</div> <!-- Ende Home Box -->
+
+<footer class="homeFooter">
+    <div data-th-insert="~{/fragments/footer :: version}"></div>
+</footer>
+
+</body>
+</html>

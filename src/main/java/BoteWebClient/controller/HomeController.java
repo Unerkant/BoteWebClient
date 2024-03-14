@@ -1,6 +1,7 @@
 package BoteWebClient.controller;
 
 import BoteWebClient.model.Message;
+import BoteWebClient.service.RuntimeService;
 import BoteWebClient.service.SocketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,37 +16,49 @@ import java.time.LocalDateTime;
  */
 
 @Controller
-@RequestMapping(value = {"/", "message"})
-public class MessageController {
+@RequestMapping(value = {"/", "home"})
+public class HomeController {
 
     @Autowired
     private SocketService socketService;
+    @Autowired
+    private RuntimeService runtimeService;
 
 
     @GetMapping
-    public String index(){
+    public String getHome(Model model){
 
         // Socket Start
         socketService.connect();
-            System.out.println("Get");
-        return "/message";
+        zeitStempel(model);
+
+        System.out.println("Get Home Controller");
+        return "/home";
     }
 
+
     @PostMapping
-    public String index(Model model, Message message,
+    public String postHome(Model model, Message message,
                         @RequestParam(value = "messageInput", required = false) String textZugesendet ){
-        System.out.println("Post");
 
         model.addAttribute("textAusgabe", textZugesendet);
 
+        // message Daten
         message.setName(String.valueOf(LocalDateTime.now()));
         message.setText(textZugesendet);
 
+        // message Sensen, socketService Zeile: 160
         socketService.senden(message);
+        zeitStempel(model);
 
-        return "/message";
+        System.out.println("Post Home Controller");
+        return "/home";
     }
 
 
+    private void zeitStempel(Model model){
+        model.addAttribute("datum", LocalDateTime.now().withNano(0));
+        model.addAttribute("zeitstempel", runtimeService.getRuntimeSinceStart());
+    }
 
 }
