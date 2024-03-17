@@ -4,8 +4,12 @@
     <title>Title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/img/horn.png" rel="icon" sizes="32x32" type="image/png">
+    <link data-th-href="@{/img/horn.png}" rel="icon" sizes="32x32" type="image/png">
     <link data-th-href="@{/css/style.css}" rel="stylesheet">
+
+    <script data-th-src="@{/js/jquery@371.js}"></script>
+    <script data-th-src="@{/js/stompjs@171.js}"></script>
+    <script data-th-src="@{/js/socketjs@161.js}"></script>
 </head>
 <body>
 
@@ -43,28 +47,28 @@
                 <thead>
                 <th>
                     <h3>Message an Bote Server Senden</h3>
+                    <div>&#160;</div>
+                    <div align="center"><span id="infoAnzeigen"></span></div>
                 </th>
                 </thead>
 
                 <tbody>
                 <tr><td>&#160;</td></tr>
-                <form style="border: 1px solid red;" method="post">
+                <form id="form" style="border: 1px solid red;">
                     <tr>
                         <td>
-                            <input type="text" name="messageInput" placeholder="Bob"
+                            <input type="text" id="messageText" placeholder="Schreibe eine Nachricht..."
                                    style="width: 95%; padding: 10px; font-size: 1.1em;" autofocus required>
                         </td>
                         <td width="100">
-                            <input type="submit" style="padding: 10px 20px;">
+                            <button type="submit" class="senden" id="send" style="padding: 10px 20px;">Send</button>
                         </td>
                     </tr>
                 </form>
                 <tr><td>&#160;</td></tr>
                 </tbody>
 
-                <tfoot id="textAusgabe" >
-                <tr><td data-th-text="${textAusgabe}" style="font-size: 1.1em;"></td></tr>
-                </tfoot>
+                <tfoot id="textAusgabe" ></tfoot>
 
             </table>
         </div>
@@ -84,5 +88,7 @@
     <div data-th-insert="~{/fragments/footer :: version}"></div>
 </footer>
 
+
+<script data-th-src="@{/js/socketConnect.js}"></script>
 </body>
 </html>
