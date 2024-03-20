@@ -25,6 +25,7 @@ public class HomeController {
 
         // Server Laufzeit in Footer anzeigen
         systeminfoService.setBaseInformation(model);
+        //systeminfoService.getRuntime(model);
 
         //System.out.println("Get Home Controller");
         return "/home";

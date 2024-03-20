@@ -17,13 +17,19 @@ public class SysteminfoService {
     @Autowired
     private RuntimeService runtimeService;
 
+    private static long startTime;
+    public SysteminfoService() { startTime = System.currentTimeMillis();}
+
     public void setBaseInformation(Model model){
 
         // anzeige in Header
         model.addAttribute("datum", LocalDateTime.now().withNano(0));
-        // anzeige in footer(fragments)
-        model.addAttribute("zeitstempel", runtimeService.getRuntimeSinceStart());
+        // anzeige in Footer
+        model.addAttribute("serverLaufZeit", runtimeService.getRuntimeSinceStart());
+        //model.addAttribute("serverStartZeit", runtimeService.getStartTime());
 
     }
+
+
 
 }

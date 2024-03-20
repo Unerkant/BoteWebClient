@@ -2,19 +2,22 @@ package BoteWebClient.service;
 
 import org.springframework.stereotype.Service;
 
+
 /**
  * Den 14.03.2024
  */
 
 @Service
 public class RuntimeService {
-    private final long startTime;
+    private static long startTime;
 
     public RuntimeService(){
         startTime = System.currentTimeMillis();
     }
 
-    public String getRuntimeSinceStart(){
+
+
+    public String getRuntimeSinceStart() {
 
         long nowTime =  System.currentTimeMillis();
         long differenceInMillis = Math.abs(startTime - nowTime);
@@ -32,6 +35,7 @@ public class RuntimeService {
         }
 
         return "Server läuft seit " + getDaysText(days) + getHoursText(hours) + getMinutesText(minutes);
+
     }
 
     private String getMinutesText(int minutes){
@@ -45,4 +49,5 @@ public class RuntimeService {
     private String getDaysText(int days){
         return days > 0 ? (days > 1 ? days + " Tagen " : " einem Tag ") : "";
     }
+
 }

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>BoteWebClient</groupId>
 	<artifactId>BoteWebClient</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.6</version>
 	<name>BoteWebClient</name>
 	<description>Bote project for Spring Boot</description>
 	<properties>

@@ -42,10 +42,10 @@
 
         <div class="leer50">&#160;</div>
         <div align="center">
-            <table width="80%" border="0" cellspacing="0" cellpadding="0">
+            <table width="80%" border="0" cellspacing="5" cellpadding="0">
 
                 <thead>
-                <th>
+                <th colspan="3">
                     <h3>Message an Bote Server Senden</h3>
                     <div>&#160;</div>
                     <div align="center"><span id="infoAnzeigen"></span></div>
@@ -53,22 +53,30 @@
                 </thead>
 
                 <tbody>
-                <tr><td>&#160;</td></tr>
+                <tr><td colspan="3">&#160;</td></tr>
                 <form id="form" style="border: 1px solid red;">
                     <tr>
-                        <td>
-                            <input type="text" id="messageText" placeholder="Schreibe eine Nachricht..."
-                                   style="width: 95%; padding: 10px; font-size: 1.1em;" autofocus required>
+                        <td width="50">
+                            <input type="text" id="userId" placeholder="ID" required
+                                class="fontSize11 autoWidth" value="12">
                         </td>
                         <td width="100">
-                            <button type="submit" class="senden" id="send" style="padding: 10px 20px;">Send</button>
+                            <input type="text" id="userName" placeholder="Name" autofocus required
+                                   class="fontSize11 autoWidth" >
+                        </td>
+                        <td>
+                            <input type="text" id="messageText" placeholder="Schreibe eine Nachricht..." required
+                                   class="fontSize11 autoWidth" >
+                        </td>
+                        <td width="100" align="center">
+                            <button type="submit" id="send" class="fontSize11 autoWidth">Send</button>
                         </td>
                     </tr>
                 </form>
-                <tr><td>&#160;</td></tr>
+                <tr><td colspan="3">&#160;</td></tr>
                 </tbody>
 
-                <tfoot id="textAusgabe" ></tfoot>
+                <tfoot id="textAusgabe"  colspan="3"></tfoot>
 
             </table>
         </div>
