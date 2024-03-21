@@ -1,0 +1,37 @@
+/**
+ * Den 20.03.2024
+ * Text-layout Paul Richter
+ */
+
+                    Allgemeine Einstellungen
+
+ *******************************+****************
+ *  Footer(fragment): Lauf zeit des Servers
+ *******************************+****************
+ 1. Benutzte scripten: SysteminfoService.java(Service), footer.html(fragment) + serverLaufZeit.js(home.html)
+    + noch einen javascript mit die variable 'startzeit'(home.html Zeile: 100)
+ 2. die startzeit des Servers wird in SysteminfoService.java kompiliert und
+    mit den model.addAttribute("serverStartZeit", startTime); an footer gesendet
+ 3. min dem javascript(serverLaufZeit.js, liegt in home.html, Zeile: 100) wird der StartZeit von footer
+    ausgelesen und in Live function benutzt
+ 4. Rest: siehe den javascript
+ 5. FEHLER: Server läuft seit 3 Tagen 14 Stunden 31 Minuten
+ 6. LÖSUNG: die variable startzeit int null, keine daten von 'startTime = System.currentTimeMillis();'
+    oder keine senden:  model.addAttribute("serverStartZeit", startTime);... in SysteminfoService.java Zeile: 24, 34
+
+
+ ************************************************
+ *
+ ************************************************
+
+
+
+  ************************************************
+  *
+  ************************************************
+
+
+
+   ************************************************
+   *
+   ************************************************

@@ -1,6 +1,6 @@
 package BoteWebClient.controller;
 
-import BoteWebClient.service.SysteminfoService;
+import BoteWebClient.service.SystemInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,18 +16,16 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
 
     @Autowired
-    private SysteminfoService systeminfoService;
+    private SystemInfoService systeminfoService;
 
 
 
     @GetMapping
     public String getHome(Model model){
 
-        // Server Laufzeit in Footer anzeigen
-        systeminfoService.setBaseInformation(model);
-        //systeminfoService.getRuntime(model);
+        // Server Start Zeit senden an home.html
+        systeminfoService.setServerStartZeit(model);
 
-        //System.out.println("Get Home Controller");
         return "/home";
     }
 

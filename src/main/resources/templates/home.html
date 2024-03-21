@@ -29,7 +29,10 @@
                     <h3 data-th-text="${@environment.getProperty('info.name')}"></h3>
                 </td>
                 <td class="homeTdRechts">
-                    <span data-th-text="${datum}"></span>
+                    <span id="jahrAnzeige"></span>
+                    &#160;&#160;
+                    <br>
+                    <span id="zeitAnzeige"></span>
                     &#160;&#160;
                 </td>
             </tr>
@@ -97,6 +100,15 @@
 </footer>
 
 
+<script data-th-src="@{/js/uhr.js}"></script>
 <script data-th-src="@{/js/socketConnect.js}"></script>
+<!-- variable startzeit für den script serverLaufZeit.js(gleich unten) -->
+<script data-th-inline="javascript">
+    /*<![CDATA[*/
+        var startzeit = /*[[${serverStartZeit}]]*/ null;
+    /*]]>*/
+</script>
+<script data-th-src="@{/js/serverLaufZeit.js}"></script>
+
 </body>
 </html>
