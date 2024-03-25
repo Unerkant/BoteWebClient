@@ -10,6 +10,7 @@
     <script data-th-src="@{/js/jquery@371.js}"></script>
     <script data-th-src="@{/js/stompjs@171.js}"></script>
     <script data-th-src="@{/js/socketjs@161.js}"></script>
+    <!--<script data-th-src="@{/js/sockjs.min.js.map}" type="application/json"></script>-->
 </head>
 <body>
 
@@ -27,6 +28,7 @@
                 </td>
                 <td class="homeTdMitte">
                     <h3 data-th-text="${@environment.getProperty('info.name')}"></h3>
+                    <div align="center"><small id="infoAnzeigen"></small></div>
                 </td>
                 <td class="homeTdRechts">
                     <span id="jahrAnzeige"></span>
@@ -47,39 +49,38 @@
         <div align="center">
             <table width="80%" border="0" cellspacing="5" cellpadding="0">
 
-                <thead>
+                <thead id="recipientBox">
                 <th colspan="3">
-                    <h3>Message an Bote Server Senden</h3>
-                    <div>&#160;</div>
-                    <div align="center"><span id="infoAnzeigen"></span></div>
+                    <strong>bitte melden sie sich an!</strong>
+                    <input type="text" id="recipientName" placeholder="Name" autofocus
+                           class="fontSize11" maxlength="50" width="200" style="padding: 0.6em;" >
+                    &#160;&#160;&#160;
+                    <button type="button" onclick="connect()" style="padding: 0.6em;" >Verbinden</button>
                 </th>
                 </thead>
 
-                <tbody>
-                <tr><td colspan="3">&#160;</td></tr>
                 <form id="form" style="border: 1px solid red;">
+                <tbody id="messageBox" style="display: none;">
+                <tr><td colspan="3" id="mitWemVerbunden"></td></tr>
+                <tr><td colspan="3">&#160;</td></tr>
+
                     <tr>
-                        <td width="50">
-                            <input type="text" id="userId" placeholder="ID" required
-                                class="fontSize11 autoWidth" value="12">
-                        </td>
-                        <td width="100">
-                            <input type="text" id="userName" placeholder="Name" autofocus required
-                                   class="fontSize11 autoWidth" >
+                        <td width="150">
+                            <input type="text" id="userName" placeholder="Name"  class="fontSize11 autoWidth" autofocus >
                         </td>
                         <td>
-                            <input type="text" id="messageText" placeholder="Schreibe eine Nachricht..." required
+                            <input type="text" id="messageText" placeholder="Schreibe eine Nachricht..." autofocus required
                                    class="fontSize11 autoWidth" >
                         </td>
                         <td width="100" align="center">
                             <button type="submit" id="send" class="fontSize11 autoWidth">Send</button>
                         </td>
                     </tr>
-                </form>
                 <tr><td colspan="3">&#160;</td></tr>
                 </tbody>
+                </form>
 
-                <tfoot id="textAusgabe"  colspan="3"></tfoot>
+                <tfoot id="messageAusgabe"  colspan="3"></tfoot>
 
             </table>
         </div>

@@ -24,7 +24,7 @@ public class HomeController {
     public String getHome(Model model){
 
         // Server Start Zeit senden an home.html
-        systeminfoService.setServerStartZeit(model);
+        systeminfoService.getServerStartZeit(model);
 
         return "/home";
     }
