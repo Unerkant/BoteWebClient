@@ -4,11 +4,6 @@
  */
 
  var stompClient    = null;
- var funfSekunden   = 5000;
- var sechsMinuten   = 360000;   // sechs Minuten in Millis
- var reconnectCount = 10;
- var reconnectStop  = 1;
- var timerOutId     = null;
 
  function connect() {
 
@@ -47,7 +42,8 @@
         });
 
 
-        setConnected(true);
+        setConnected();
+        reconnect(false);   // sperrt setTimeout aus, Zeile: 130
         if(clientName){
             $("#mitWemVerbunden").removeClass("Rot");
             $("#mitWemVerbunden").html("Ihre Name:  <b>"+ clientName +"</b>").addClass("twilight");
@@ -55,8 +51,8 @@
 
     }, function(err){
         // reagiert nur auf defekten 'new SockJS('/registrieren')'... defekt: new SockJS('/reg');
-        disconnect(err)
-        reconnectHandle();
+        disconnect(err);
+        reconnect(true); // Startet setTimeout/connect bei abbruch des Server
     });
  }
 
@@ -94,7 +90,7 @@
  }
 
 
- function setConnected(connected) {
+ function setConnected() {
      $("#infoAnzeigen").text("Verbunden mit Socket").addClass("Grun");
      $("#messageAusgabe").html("");
      $("#recipientBox").hide();
@@ -102,8 +98,6 @@
      if($("#repicientName").val() == null){
         $("#mitWemVerbunden").text("Sie sind nicht Registriert, keine Persönliche Post möglich!").addClass("Rot");
      }
-
-     if(timerOutId != null){ clearTimesOuts(); }
  }
 
 
@@ -127,47 +121,22 @@
 
  /* <!-- :::::::::::::::::::::::: reconnect socket :::::::::::::::::::::: --> */
 
- function reconnectHandle(connectBoolean){
+    /*
+    *   wenn sollte gelöscht werden, weitere component zu löschen
+    *   Zeile: 46 + 55 (reconnect)
+    */
+ var timerOutId;
+ function reconnect(boolean){
 
-    if(reconnectStop == 1) {
-        reconnect(funfSekunden);
-        reconnectStop = 2;
-    }
-
-    if(reconnectStop == 3){
-        reconnect(sechsMinuten);
-        reconnectStop = 4;
-    }
-
-    if(reconnectStop == 5){
-        clearTimesOuts(); // Server nach 1 Stunde nicht mehr erreichbar , reconnect abbrechen und Timer Löschen
-    }
- }
-
-
- function reconnect(millis){
-    for (let i = 1; i <= reconnectCount; i++) {
-
+    if(boolean){
         timerOutId = setTimeout(() => {
-
-            if(i == 10){
-                reconnectStop++;
-                clearTimeout(timerOutId);
-                timerOutId = null;
-            }
-
             connect();
+        }, 5000);
 
-        }, i * millis);
+    } else {
+
+        timerOutId == null ? "" : clearTimeout(timerOutId); timerOutId = null;
+
     }
- }
-
-
- function clearTimesOuts(){
-
-    clearTimeout(timerOutId);
-    timerOutId = null;
-    disconnect("Bote Server läuft nicht, nach Serverneustart bitte Bote Web Client neu Starten ");
-    console.log('Timer: ' + timerOutId);
  }
 

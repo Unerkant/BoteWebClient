@@ -12,17 +12,7 @@ import org.springframework.ui.Model;
 public class SystemInfoService {
 
     private final long startTime;
+    public long getStartTime() { return startTime; }
     public SystemInfoService() { startTime = System.currentTimeMillis();}
-
-
-
-    public void getServerStartZeit(Model model){
-
-        // gesendet an home.html zu javascript, Zeile: 100
-        model.addAttribute("serverStartZeit", startTime);
-
-    }
-
-
 
 }
