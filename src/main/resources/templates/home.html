@@ -10,7 +10,7 @@
     <script data-th-src="@{/js/jquery@371.js}"></script>
     <script data-th-src="@{/js/stompjs@171.js}"></script>
     <script data-th-src="@{/js/socketjs@161.js}"></script>
-    <!--<script data-th-src="@{/js/sockjs.min.js.map}" type="application/json"></script>-->
+    <script type="text/jsx" data-th-src="@{/js/sockjs.js.map}"></script>
 </head>
 <body>
 
@@ -28,7 +28,10 @@
                 </td>
                 <td class="homeTdMitte">
                     <h3 data-th-text="${@environment.getProperty('info.name')}"></h3>
-                    <div align="center"><small id="infoAnzeigen"></small></div>
+                    <div align="center">
+                        <span id="spinner"></span>
+                        <small id="infoAnzeigen"></small>
+                    </div>
                 </td>
                 <td class="homeTdRechts">
                     <span id="jahrAnzeige"></span>
@@ -52,7 +55,7 @@
                 <thead id="recipientBox">
                 <th colspan="3">
                     <strong>bitte melden sie sich an!</strong>
-                    <input type="text" id="recipientName" placeholder="Name" autofocus
+                    <input type="text" id="userName" placeholder="Name" autofocus
                            class="fontSize11" maxlength="50" width="200" style="padding: 0.6em;" >
                     &#160;&#160;&#160;
                     <button type="button" onclick="connect()" style="padding: 0.6em;" >Verbinden</button>
@@ -66,7 +69,7 @@
 
                     <tr>
                         <td width="150">
-                            <input type="text" id="userName" placeholder="Name"  class="fontSize11 autoWidth" autofocus >
+                            <input type="text" id="recipientName" placeholder="Name"  class="fontSize11 autoWidth" autofocus >
                         </td>
                         <td>
                             <input type="text" id="messageText" placeholder="Schreibe eine Nachricht..." autofocus required

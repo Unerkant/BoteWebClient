@@ -7,7 +7,7 @@
 
  function connect() {
 
-    var clientName = $("#recipientName").val();
+    var userClient = $("#userName").val();
 
 
     var socket = new SockJS("http://localhost:8076/register");
@@ -15,7 +15,7 @@
 
     stompClient.connect({}, function (frame) {
 
-        stompClient.subscribe('/messages/receive/' + clientName, function (message) {
+        stompClient.subscribe('/messages/receive/' + userClient, function (message) {
 
            try{
                 var messageOutput = JSON.parse(message.body);
@@ -44,17 +44,18 @@
 
         setConnected();
         reconnect(false);   // sperrt setTimeout aus, Zeile: 130
-        if(clientName){
+        if(userClient){
             $("#mitWemVerbunden").removeClass("Rot");
-            $("#mitWemVerbunden").html("Ihre Name:  <b>"+ clientName +"</b>").addClass("twilight");
+            $("#mitWemVerbunden").html("Registriert als:  <b>"+ userClient +"</b>").addClass("twilight");
         }
 
     }, function(err){
         // reagiert nur auf defekten 'new SockJS('/registrieren')'... defekt: new SockJS('/reg');
         disconnect(err);
-        reconnect(true); // Startet setTimeout/connect bei abbruch des Server
+        reconnect(true); // Startet setTimeout/connect wenn Server ausfällt
     });
  }
+
 
  function sendMessage(){
 
@@ -74,8 +75,8 @@
 
  function showMessage(message){
     var privat, anonym;
-    message.name == "" ?  privat = "" : privat = "( privat )";
-    message.recipient == "" ? anonym = "Anonymous" : anonym = message.recipient;
+    message.recipient == "" ?  privat = "" : privat = "( privat )";
+    message.name == "" ? anonym = "Anonymous" : anonym = message.name;
     $("#messageAusgabe").append("<tr style='padding: 0.6em;'><td >"
                             + "<b class='twilight'> " + anonym + " </b></td>"
                             + "<td colspan='2'><small class='Rot'> " + privat  + " </small>"

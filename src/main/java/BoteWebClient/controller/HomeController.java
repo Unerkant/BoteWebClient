@@ -23,7 +23,7 @@ public class HomeController {
     @GetMapping
     public String getHome(Model model){
 
-        // gesendet an Home.html / javascript Zeile: 105 (var startzeit = /*[[${serverStartZeit}]]*/ null;)
+        // gesendet an Home.html / javascript Zeile: 105 (var startzeit = /*[[${systemStartZeit}]]*/ null;)
         model.addAttribute("systemStartZeit", systeminfoService.getStartTime());
 
         return "/home";
