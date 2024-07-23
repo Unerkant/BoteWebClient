@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.0-M1</version>
+		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>BoteWebClient</groupId>
 	<artifactId>BoteWebClient</artifactId>
-	<version>0.0.10</version>
+	<version>0.0.11</version>
 	<name>BoteWebClient</name>
 	<description>Bote project for Spring Boot</description>
 	<properties>
@@ -24,30 +24,30 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<version>3.2.3</version>
+			<version>3.3.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>3.2.3</version>
+			<version>3.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-			<version>3.2.3</version>
+			<version>3.3.0</version>
 		</dependency>
 
 		<!-- messaging, websocket -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-messaging</artifactId>
-			<version>6.1.4</version>
+			<version>6.1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-websocket</artifactId>
-			<version>6.1.4</version>
+			<version>6.1.8</version>
 		</dependency>
 	</dependencies>
 
@@ -56,6 +56,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${project.parent.version}</version>
 			</plugin>
 		</plugins>
 	</build>

@@ -7,6 +7,10 @@
 
  function connect() {
 
+    if (stompClient != null) {
+        stompClient.disconnect();
+    }
+
     var userClient = $("#userName").val();
 
 
@@ -122,8 +126,8 @@
 
  /* <!-- :::::::::::::::::::::::: reconnect socket :::::::::::::::::::::: --> */
 
-    /*
-    *   wenn sollte gelöscht werden, weitere component zu löschen
+   /*
+    *   wenn sollte gelöscht werden, sind noch weitere component zu löschen
     *   Zeile: 46 + 55 (reconnect)
     */
  var timerOutId;
@@ -133,9 +137,9 @@
         timerOutId = setTimeout(() => {
             connect();
         }, 5000);
-
+        $('#spinner').html("<img src='/img/spinner.gif' width='10' height='10' />");
     } else {
-
+        $('#spinner').html('');
         timerOutId == null ? "" : clearTimeout(timerOutId); timerOutId = null;
 
     }
